@@ -16,6 +16,8 @@
 	<noscript>
 		<strong>We're sorry but google-oauth2-demo doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
 	</noscript>
+	<div class="g-signin2" data-onsuccess="onSignIn"></div>
+
 	<div id="app"></div>
 	<a href="#" onclick="signOut();">Sign out</a>
 	<script>
@@ -29,6 +31,12 @@
 
 	<script>
 		function onSignIn(googleUser) {
+
+			//get auth response (Include Id token and bearer token)
+			var authresponse = googleUser.getAuthResponse(true);
+			console.log(authresponse)
+
+			//get Basic profile
 			var profile = googleUser.getBasicProfile();
 			console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
 			console.log('Name: ' + profile.getName());
